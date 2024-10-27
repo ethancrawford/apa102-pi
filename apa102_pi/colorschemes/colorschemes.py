@@ -84,6 +84,22 @@ class Solid(colorcycletemplate.ColorCycleTemplate):
             strip.set_pixel_rgb(led, stripcolour, 5)  # Paint 5% white
         return 1
 
+class Custom(colorcycletemplate.ColorCycleTemplate):
+    """Paints the strip with one colour."""
+
+    def __init(self, num_led, pause_value=0, num_steps_per_cycle=100,
+                 num_cycles=-1, order='rbg', bus_method='spi', spi_bus=0, mosi=None, sclk=None, ce=None,
+                 bus_speed_hz=8000000, global_brightness=4, colours=[]):
+        super().__init__(num_led, pause_value, num_steps_per_cycle,
+                 num_cycles, order, bus_method, spi_bus, mosi, sclk, ce,
+                 bus_speed_hz, global_brightness)
+        self.colours = colours
+
+    def update(self, strip, num_led, num_steps_per_cycle, current_step, current_cycle):
+        stripcolour = self.colours[current_step]
+        for led in range(0, num_led):
+            strip.set_pixel_rgb(led, stripcolour)
+        return 1
 
 class Rainbow(colorcycletemplate.ColorCycleTemplate):
     """Paints a rainbow effect across the entire strip."""
