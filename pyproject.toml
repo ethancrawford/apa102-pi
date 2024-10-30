@@ -24,6 +24,7 @@ keywords = ["apa102", "led", "SK9822", "superled", "dotstar", "raspberry pi"]
 dependencies = [
     "adafruit-circuitpython-bitbangio",
     "adafruit-circuitpython-busdevice",
+    "coloraide"
 ]
 [tool.setuptools]
 packages = ["apa102_pi", "apa102_pi.colorschemes", "apa102_pi.driver"]
