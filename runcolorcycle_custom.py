@@ -14,13 +14,15 @@ def _colour_list():
   return result
 
 def _convert_colour(colour):
-  return int(colour.convert("srgb").to_string(hex=True).removeprefix("#"), 16)
+   colour_string = colour.convert("srgb").to_string(hex=True).removeprefix("#")
+   colour_string[2:4], colour_string[4:5] = colour_string[4:5], colour_string[2:4]
+   return int(colour_string, 16)
 
 def main():
     # Cycles through a custom colour list
     print('Cycles through a custom colour list')
     colour_list = _colour_list()
-    my_cycle = colorschemes.Custom(num_led=NUM_LED, num_steps_per_cycle=len(colour_list), order='rgb', colours=colour_list)
+    my_cycle = colorschemes.Custom(num_led=NUM_LED, num_steps_per_cycle=len(colour_list), order='rbg', colours=colour_list)
     my_cycle.start()
 
     print('Finished the test')
